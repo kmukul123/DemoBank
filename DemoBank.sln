@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoBank", "DemoBank\DemoBa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{8CC3C8FA-FA14-49A2-8F1B-8DF9C95D7389}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BankDatabase", "BankDatabase\BankDatabase.sqlproj", "{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +19,18 @@ Global
 		{412DC7A4-3343-4689-A00C-43DFD476DDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{412DC7A4-3343-4689-A00C-43DFD476DDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{412DC7A4-3343-4689-A00C-43DFD476DDF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52ACD991-D3B6-4AC7-BB7B-5F25CE368CE0} = {8CC3C8FA-FA14-49A2-8F1B-8DF9C95D7389}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5BB32DD-83A1-4E68-ABCD-9CD8D9F1464F}
