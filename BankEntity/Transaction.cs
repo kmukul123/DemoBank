@@ -1,6 +1,7 @@
 ﻿using DomainModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -44,6 +45,13 @@ namespace Repository
         public Guid OwnerId { get; set; }
 
         public virtual Customer OwnerNavigation { get; set; }
-        public ICustomer Owner { get => OwnerNavigation; }
+        [NotMapped]
+        public ICustomer Owner 
+        { 
+            get => OwnerNavigation; 
+            set { OwnerNavigation = new Customer(value);
+                OwnerId = value.Id;
+            } 
+        }
     }
 }

@@ -15,6 +15,6 @@ namespace DomainModel
         public DateTime Date { get; set; }
         public Guid OwnerId { get; set; }
 
-        public ICustomer Owner { get; }
+        public ICustomer Owner { get; set; }
     }
 }

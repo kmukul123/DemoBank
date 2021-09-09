@@ -10,6 +10,6 @@ namespace Repository
     {
         public Task<IEnumerable<ITransaction>> GetAllTransactionsAsync();
         public Task<ITransaction> GetTransactionAsync(Guid guid);
-        public Task<int> SaveTransactionAsync(ITransaction transaction);
+        public Task<int> SaveTransactionAndCustomerAsync(ITransaction transaction);
     }
 }

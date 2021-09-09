@@ -42,10 +42,9 @@ namespace BankRepositoryTests
         public async Task RepositoryCanSave()
         {
             var customer = makeCustomer();
-            await _repository.SaveCustomerAsync(customer);
 
             var transaction = maketestTransaction(customer);
-            await _repository.SaveTransactionAsync(transaction);
+            await _repository.SaveTransactionAndCustomerAsync(transaction);
             var count = await _dbContext.Transactions.CountAsync();
             Assert.Equal(count, 1);
         }
@@ -82,6 +81,7 @@ namespace BankRepositoryTests
             FromAccount = "123-456",
             ToAccount = "789-123",
             OwnerId = customer.Id,
+            Owner = customer,
         };
     }
 }

@@ -55,6 +55,26 @@ namespace Repository
             }
         }
 
+        public async Task<int> SaveTransactionAndCustomerAsync(ITransaction transaction)
+        {
+            BankDBContext.Transactions.Add(new Transaction(transaction));
+            using var dbtransaction = BankDBContext.Database.BeginTransaction();
+            try
+            {
+                var customerIspresent = await BankDBContext.Customers.AnyAsync(x => x.Id == transaction.OwnerId);
+                if (!customerIspresent)
+                    BankDBContext.Customers.Add(new Customer(transaction.Owner));
+
+                var ret = await BankDBContext.SaveChangesAsync();
+                dbtransaction.Commit();
+                return ret;
+            }
+            catch (Exception)
+            {
+                dbtransaction.Rollback();
+                throw;
+            }
+        }
         /// <summary>
         /// TODO : can add database transactions for it
         /// </summary>
