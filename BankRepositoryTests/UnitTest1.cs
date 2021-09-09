@@ -49,6 +49,18 @@ namespace BankRepositoryTests
             Assert.Equal(count, 1);
         }
 
+
+        [Fact]
+        public async Task RepositoryCanSaveIfCustomerExists()
+        {
+            var customer = makeCustomer();
+            await _repository.SaveCustomerAsync(customer);
+            var transaction = maketestTransaction(customer);
+            await _repository.SaveTransactionAndCustomerAsync(transaction);
+            var count = await _dbContext.Transactions.CountAsync();
+            Assert.Equal(count, 1);
+        }
+
         [Fact]
         public async Task RepositoryCanSaveAndRead()
         {
