@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DomainModel.Validators
 {
-    public class TransactionValidator : IValidator
+    public class TransactionValidator : IValidator<>
     {
 
     }

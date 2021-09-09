@@ -7,7 +7,7 @@ namespace BankRepository
 {
     interface ITransactionRepository
     {
-        public IEnumerable<ITransaction> getAllTransaction();
+        public IEnumerable<ITransaction> getAllTransactions();
         public ITransaction getTransaction(Guid guid);
         public int saveTransaction(ITransaction transaction);
     }
