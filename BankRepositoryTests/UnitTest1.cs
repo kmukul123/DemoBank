@@ -1,6 +1,7 @@
 using Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using Xunit;
 using System.Threading.Tasks;
 using DomainModel;
@@ -44,7 +45,9 @@ namespace BankRepositoryTests
             var transaction = maketestTransaction(customer);
             await _repository.SaveTransactionAsync(transaction);
 
-           var count = await _repository.getAllTransactions();
+           var alltransactions = await _repository.GetAllTransactionsAsync();
+            Assert.Equal(alltransactions.Count(), 1);
+            Assert.NotNull(await _repository.GetTransactionAsync(transaction.ExternalId));
         }
 
         private Customer makeCustomer()

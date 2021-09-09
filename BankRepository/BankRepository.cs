@@ -1,4 +1,5 @@
 ﻿using DomainModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,14 +20,18 @@ namespace Repository
 
         public BankDBContext BankDBContext { get; }
 
-        public IEnumerable<ITransaction> getAllTransactions()
+        /// <summary>
+        /// todo ideally should return all as it could cause many issues
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IEnumerable<ITransaction>> GetAllTransactionsAsync()
         {
-            throw new NotImplementedException();
+            return await  BankDBContext.Transactions.ToListAsync();
         }
 
-        public ITransaction getTransaction(Guid guid)
+        public async Task<ITransaction> GetTransactionAsync(Guid guid)
         {
-            throw new NotImplementedException();
+            return await BankDBContext.Transactions.SingleOrDefaultAsync(x => x.ExternalId == guid);
         }
 
         /// <summary>

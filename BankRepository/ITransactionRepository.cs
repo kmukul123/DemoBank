@@ -8,8 +8,8 @@ namespace Repository
 {
     interface ITransactionRepository
     {
-        public IEnumerable<ITransaction> getAllTransactions();
-        public ITransaction getTransaction(Guid guid);
+        public Task<IEnumerable<ITransaction>> GetAllTransactionsAsync();
+        public Task<ITransaction> GetTransactionAsync(Guid guid);
         public Task<int> SaveTransactionAsync(ITransaction transaction);
     }
 }
