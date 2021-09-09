@@ -61,4 +61,7 @@
     <Build Include="Customers.sql" />
     <Build Include="Transactions.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BankDatabase.refactorlog" />
+  </ItemGroup>
 </Project>

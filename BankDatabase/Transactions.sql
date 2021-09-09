@@ -10,3 +10,7 @@
     [owner] UNIQUEIDENTIFIER NOT NULL, 
     CONSTRAINT [FK_Transactions_ToCustomers] FOREIGN KEY ([owner]) REFERENCES [Customers]([Id])
 )
+
+GO
+
+CREATE INDEX [IX_Transactions_ExternalId] ON [dbo].[Transactions] ([externalId])

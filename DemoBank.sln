@@ -11,7 +11,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BankDatabase", "BankDatabas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankEntity", "BankEntity\BankEntity.csproj", "{CDC1FFC7-154A-490D-BCB1-5A471CEA9596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankRepository", "BankRepository\BankRepository.csproj", "{6E1F39A1-BC4E-4BF4-957B-3DAAF9B5397C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankRepository", "BankRepository\BankRepository.csproj", "{6E1F39A1-BC4E-4BF4-957B-3DAAF9B5397C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B930D09B-5A06-4225-8501-60BD566FE20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

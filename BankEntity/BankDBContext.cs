@@ -48,24 +48,26 @@ namespace BankRepository
                 entity.Property(e => e.RowId).ValueGeneratedNever();
 
                 entity.Property(e => e.Amount)
+                    .IsRequired()
                     .HasColumnType("numeric(18, 4)")
                     .HasColumnName("amount");
 
-                entity.Property(e => e.Date).HasColumnName("date");
+                entity.Property(e => e.Date).IsRequired().HasColumnName("date");
 
                 entity.Property(e => e.Description)
+                    .IsRequired()
                     .HasMaxLength(10)
                     .HasColumnName("description")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.ExternalId).HasColumnName("externalId");
+                entity.Property(e => e.ExternalId).IsRequired().HasColumnName("externalId");
 
                 entity.Property(e => e.FromAccount)
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("fromAccount");
 
-                entity.Property(e => e.Owner).HasColumnName("owner");
+                entity.Property(e => e.Owner).IsRequired().HasColumnName("owner");
 
                 entity.Property(e => e.ToAccount)
                     .HasMaxLength(50)
