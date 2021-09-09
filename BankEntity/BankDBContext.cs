@@ -4,8 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace BankRepository
+namespace Repository
 {
+    /// <summary>
+    /// this project can be merged into Repository for this small excercise
+    /// </summary>
     public partial class BankDBContext : DbContext
     {
         public BankDBContext()
@@ -67,7 +70,7 @@ namespace BankRepository
                     .HasMaxLength(50)
                     .HasColumnName("fromAccount");
 
-                entity.Property(e => e.Owner).IsRequired().HasColumnName("owner");
+                entity.Property(e => e.OwnerId).IsRequired().HasColumnName("owner");
 
                 entity.Property(e => e.ToAccount)
                     .HasMaxLength(50)
@@ -75,7 +78,7 @@ namespace BankRepository
 
                 entity.HasOne(d => d.OwnerNavigation)
                     .WithMany(p => p.Transactions)
-                    .HasForeignKey(d => d.Owner)
+                    .HasForeignKey(d => d.OwnerId)
                     .HasConstraintName("FK_Transactions_ToCustomers");
             });
 

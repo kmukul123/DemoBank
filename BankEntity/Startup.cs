@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace BankRepository
+namespace Repository
 {
     public static class Startup
     {

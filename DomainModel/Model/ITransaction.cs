@@ -13,6 +13,8 @@ namespace DomainModel
         public string Description { get; set; }
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
-        public Guid Owner { get; set; }
+        public Guid OwnerId { get; set; }
+
+        public ICustomer OwnerNavigation { get; set; }
     }
 }

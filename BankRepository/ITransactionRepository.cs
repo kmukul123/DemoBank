@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace BankRepository
+namespace Repository
 {
     interface ITransactionRepository
     {
         public IEnumerable<ITransaction> getAllTransactions();
         public ITransaction getTransaction(Guid guid);
-        public int saveTransaction(ITransaction transaction);
+        public Task<int> SaveTransactionAsync(ITransaction transaction);
     }
 }

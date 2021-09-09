@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BankRepository
+namespace Repository
 {
     interface ICustomerRepository
     {
