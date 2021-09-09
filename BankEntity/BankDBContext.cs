@@ -32,6 +32,7 @@ namespace Repository
             }
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -48,14 +49,16 @@ namespace Repository
 
             modelBuilder.Entity<Transaction>(entity =>
             {
-                entity.Property(e => e.RowId).ValueGeneratedNever();
+                entity.HasKey(e => e.RowId)
+                    .HasName("PK__tmp_ms_x__FFEE743164DFDD52");
+
+                entity.HasIndex(e => e.ExternalId, "IX_Transactions_ExternalId");
 
                 entity.Property(e => e.Amount)
-                    .IsRequired()
                     .HasColumnType("numeric(18, 4)")
                     .HasColumnName("amount");
 
-                entity.Property(e => e.Date).IsRequired().HasColumnName("date");
+                entity.Property(e => e.Date).HasColumnName("date");
 
                 entity.Property(e => e.Description)
                     .IsRequired()
@@ -63,27 +66,30 @@ namespace Repository
                     .HasColumnName("description")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.ExternalId).IsRequired().HasColumnName("externalId");
+                entity.Property(e => e.ExternalId).HasColumnName("externalId");
 
                 entity.Property(e => e.FromAccount)
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("fromAccount");
 
-                entity.Property(e => e.OwnerId).IsRequired().HasColumnName("owner");
+                entity.Property(e => e.OwnerId).HasColumnName("ownerId");
 
                 entity.Property(e => e.ToAccount)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("toAccount");
 
                 entity.HasOne(d => d.OwnerNavigation)
                     .WithMany(p => p.Transactions)
                     .HasForeignKey(d => d.OwnerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Transactions_ToCustomers");
             });
 
             OnModelCreatingPartial(modelBuilder);
         }
+
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

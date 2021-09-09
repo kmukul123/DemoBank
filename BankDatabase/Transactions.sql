@@ -7,8 +7,8 @@
     [description] NCHAR(10) NOT NULL, 
     [amount] NUMERIC(18, 4) NOT NULL, 
     [date] DATETIME2 NOT NULL, 
-    [owner] UNIQUEIDENTIFIER NOT NULL, 
-    CONSTRAINT [FK_Transactions_ToCustomers] FOREIGN KEY ([owner]) REFERENCES [Customers]([Id])
+    [ownerId] UNIQUEIDENTIFIER NOT NULL, 
+    CONSTRAINT [FK_Transactions_ToCustomers] FOREIGN KEY ([ownerId]) REFERENCES [Customers]([Id])
 )
 
 GO

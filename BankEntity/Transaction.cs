@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace Repository
 {
+    /// <summary>
+    /// todo could have base entity class
+    /// </summary>
     public partial class Transaction : ITransaction
     {
         public Transaction()
@@ -27,8 +30,8 @@ namespace Repository
             this.Date = transaction.Date;
             this.OwnerId = transaction.OwnerId;
 
-            if (transaction.OwnerNavigation != null)
-                this.OwnerId = transaction.OwnerNavigation.Id;
+            if (transaction.Owner != null)
+                this.OwnerId = transaction.Owner.Id;
         }
 
         public int RowId { get; set; }
@@ -41,6 +44,6 @@ namespace Repository
         public Guid OwnerId { get; set; }
 
         public virtual Customer OwnerNavigation { get; set; }
-        ICustomer ITransaction.OwnerNavigation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public ICustomer Owner { get => OwnerNavigation; }
     }
 }
