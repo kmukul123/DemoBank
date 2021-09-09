@@ -43,7 +43,7 @@ namespace Repository
                 var ret = await BankDBContext.SaveChangesAsync();
                 dbtransaction.Commit();
                 return ret;
-            } catch(Exception ex)
+            } catch(Exception)
             {
                 dbtransaction.Rollback();
                 throw;
