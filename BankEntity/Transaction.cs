@@ -7,7 +7,7 @@ namespace BankRepository
 {
     public partial class Transaction
     {
-        public int Id { get; set; }
+        public int RowId { get; set; }
         public Guid ExternalId { get; set; }
         public string FromAccount { get; set; }
         public string ToAccount { get; set; }

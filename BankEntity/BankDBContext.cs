@@ -45,7 +45,7 @@ namespace BankRepository
 
             modelBuilder.Entity<Transaction>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.RowId).ValueGeneratedNever();
 
                 entity.Property(e => e.Amount)
                     .HasColumnType("numeric(18, 4)")
