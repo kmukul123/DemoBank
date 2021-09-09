@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Repository;
 
 namespace BankRepository
 {
@@ -7,7 +8,9 @@ namespace BankRepository
         public static void ConfigureServices(IServiceCollection services)
         {
             BankEntity.Startup.ConfigureServices(services);
-            services.AddScoped<Repository.ICustomerRepository, Repository.BankRepository>();
+            services.AddScoped<ICustomerRepository, Repository.BankRepository>();
+            services.AddScoped<ITransactionRepository, Repository.BankRepository>();
+            services.AddLogging();
         }
     }
 }

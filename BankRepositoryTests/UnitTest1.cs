@@ -6,13 +6,15 @@ using Xunit;
 using System.Threading.Tasks;
 using DomainModel;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace BankRepositoryTests
 {
     public class UnitTest1
     {
         private BankDBContext _dbContext;
-        private BankRepository _repository;
+        private Repository.BankRepository _repository;
 
         public UnitTest1()
         {
@@ -21,7 +23,19 @@ namespace BankRepositoryTests
                 .ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning))
                 .Options;
             _dbContext = new BankDBContext(options);
-            _repository = new BankRepository(_dbContext);
+            _repository = new Repository.BankRepository(_dbContext);
+        }
+
+        [Fact]
+        public void DIIsworking()
+        {
+            var services = new ServiceCollection();
+            Environment.SetEnvironmentVariable("BankDBConnectionString", "Test");
+            BankRepository.Startup.ConfigureServices(services);
+            var provider = services.BuildServiceProvider();
+            Assert.NotNull( provider.GetService<ICustomerRepository>());
+            provider.GetService<ITransactionRepository>();
+            Assert.NotNull(provider.GetService<ILogger<ITransactionRepository>>());
         }
 
         [Fact]

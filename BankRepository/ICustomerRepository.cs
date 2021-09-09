@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Repository
 {
-    interface ICustomerRepository
+    public interface ICustomerRepository
     {
 
     }

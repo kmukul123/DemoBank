@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Repository;
 using System;
 
-namespace Repository
+namespace BankEntity
 {
     public static class Startup
     {
-        public static void ConfigureRepositoryServices(IServiceCollection services)
+        public static void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Environment.GetEnvironmentVariable("BankDBConnectionString");
             services.AddDbContext<BankDBContext>(
