@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,8 @@ namespace BankRepository
 {
     interface ITransactionRepository
     {
-        public getAllTransaction();
-        public getTransaction(Guid guid);
-        public saveTransaction(guid);
+        public IEnumerable<ITransaction> getAllTransaction();
+        public ITransaction getTransaction(Guid guid);
+        public int saveTransaction(ITransaction transaction);
     }
 }

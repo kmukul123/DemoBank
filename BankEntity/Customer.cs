@@ -5,7 +5,10 @@ using System.Collections.Generic;
 
 namespace BankRepository
 {
-    public partial class Customer
+    /// <summary>
+    /// TODO: could have base entity classes
+    /// </summary>
+    public partial class Customer : DomainModel.ICustomer
     {
         public Customer()
         {
@@ -15,6 +18,7 @@ namespace BankRepository
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        //not needed
+        //public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

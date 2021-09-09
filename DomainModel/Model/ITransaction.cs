@@ -1,12 +1,10 @@
-﻿using DomainModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace BankRepository
+namespace DomainModel
 {
-    public partial class Transaction : ITransaction
+    public interface ITransaction
     {
         public int RowId { get; set; }
         public Guid ExternalId { get; set; }
@@ -16,7 +14,5 @@ namespace BankRepository
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
         public Guid Owner { get; set; }
-
-        public virtual Customer OwnerNavigation { get; set; }
     }
 }
