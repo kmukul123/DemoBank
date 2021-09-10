@@ -46,12 +46,9 @@ namespace Repository
 
         public virtual Customer OwnerNavigation { get; set; }
         [NotMapped]
-        public ICustomer Owner 
+        ICustomer ITransaction.Owner
         { 
             get => OwnerNavigation; 
-            set { OwnerNavigation = new Customer(value);
-                OwnerId = value.Id;
-            } 
         }
     }
 }

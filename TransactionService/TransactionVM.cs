@@ -8,6 +8,10 @@ namespace TransactionService
 {
     public class TransactionVM : ITransaction
     {
+        public TransactionVM()
+        {
+
+        }
         public TransactionVM(ITransaction transaction)
         {
             this.ExternalId = transaction.ExternalId;
@@ -16,21 +20,48 @@ namespace TransactionService
             this.Description = transaction.Description;
             this.Amount = transaction.Amount;
             this.Date = transaction.Date;
-            this.OwnerId = transaction.OwnerId;
 
             if (transaction.Owner != null)
-                this.OwnerId = transaction.Owner.Id;
+                this.Owner = new CustomerVM(transaction.Owner);
 
         }
 
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("id")]
         public Guid ExternalId { get; set; }
+        [JsonPropertyName("fromAccount")]
         public string FromAccount { get ; set ; }
+        [JsonPropertyName("toAccount")]
         public string ToAccount { get ; set ; }
+
+        [JsonPropertyName("description")]
         public string Description { get ; set ; }
+        [JsonPropertyName("amount")]
         public decimal Amount { get ; set ; }
+        [JsonPropertyName("date")]
         public DateTime Date { get ; set ; }
-        public Guid OwnerId { get ; set ; }
-        public ICustomer Owner { get ; set ; }
+        
+        [JsonIgnore]
+        public Guid OwnerId { get => Owner.Id; }
+        [JsonPropertyName("owner")]
+        public CustomerVM Owner { get ; set ; }
+        [JsonIgnore]
+        ICustomer ITransaction.Owner { get => Owner; }
+    }
+
+    public class CustomerVM : ICustomer
+    {
+        public CustomerVM()
+        {
+
+        }
+        public CustomerVM(ICustomer c)
+        {
+            this.Id = c.Id;
+            this.Name = c.Name;
+        }
+        [JsonPropertyName("id")]
+        public Guid Id { get ; set ; }
+        [JsonPropertyName("name")]
+        public string Name { get ; set ; }
     }
 }

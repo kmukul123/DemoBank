@@ -21,7 +21,7 @@ namespace DomainModel.Validators
         public bool Validate(ITransaction input)
         {
             HasMinLength(input.Description, 5, nameof(input.Description));
-            HasMaxLength(input.Description, 5, nameof(input.Description));
+            HasMaxLength(input.Description, 50, nameof(input.Description));
             HasLessThenFourPrecision(input.Amount, nameof(input.Amount));
             HasNotNull(input.ExternalId, nameof(input.ExternalId));
             customerValidator.Validate(input.Owner);

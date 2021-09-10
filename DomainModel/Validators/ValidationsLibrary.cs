@@ -15,10 +15,10 @@ namespace DomainModel.Validators
             if (input.Length < min)
                 throw new ApplicationException($"minlength of {v2} is {input.Length} should be at least {min}");
         }
-        public static void HasMaxLength(string input, int min, string v2)
+        public static void HasMaxLength(string input, int max, string v2)
         {
-            if (input.Length > min)
-                throw new ApplicationException($"maxlength of {v2} is {input.Length} should be at least {min}");
+            if (input.Length > max)
+                throw new ApplicationException($"maxlength of {v2} is {input.Length} should be less then {max}");
         }
 
         internal static void HasLessThenFourPrecision(decimal input, string v)

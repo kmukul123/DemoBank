@@ -88,6 +88,7 @@ namespace Service
             try
             {
                 logger.LogInformation($"SaveTransaction {input}");
+
                 transaction = JsonSerializer.Deserialize<TransactionVM>(input);
                 validator.Validate(transaction);
                 return null;

@@ -26,7 +26,10 @@ namespace Repository
         /// <returns></returns>
         public async Task<IEnumerable<ITransaction>> GetAllTransactionsAsync()
         {
-            var result = await BankDBContext.Transactions.AsNoTracking().ToListAsync();
+            var result = await BankDBContext
+                .Transactions
+                .Include(x=>x.OwnerNavigation)
+                .AsNoTracking().ToListAsync();
             
             return result;
         }
@@ -102,9 +105,9 @@ namespace Repository
             existingTransaction.Description = transaction.Description;
             existingTransaction.ExternalId = transaction.ExternalId;
             existingTransaction.FromAccount = transaction.FromAccount;
-            existingTransaction.Owner = transaction.Owner;
+            existingTransaction.OwnerNavigation.Id = transaction.Owner.Id;
+            existingTransaction.OwnerNavigation.Name = transaction.Owner.Name;
             existingTransaction.OwnerId = transaction.OwnerId;
-            existingTransaction.Owner = transaction.Owner;
         }
 
         private async Task<int> TryCommitChanges()
