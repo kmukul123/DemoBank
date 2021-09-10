@@ -2,17 +2,21 @@
 using DomainModel.Validators;
 using Microsoft.Extensions.DependencyInjection;
 using Repository;
+using Service;
 using System;
 
-namespace TransactionService
+namespace Service
 {
     public static class Startup
     {
         public static void ConfigureServices(IServiceCollection services)
         {
             BankRepository.Startup.ConfigureServices(services);
-            services.AddScoped<IValidator<ICustomer>, CustomerValidator>();
-            services.AddScoped<IValidator<ITransaction>, TransactionValidator>();
+            services.AddSingleton<IValidator<ICustomer>, CustomerValidator>();
+            services.AddSingleton<IValidator<ITransaction>, TransactionValidator>();
+            services.AddLogging();
+            
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddLogging();
         }
     }

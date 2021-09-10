@@ -22,7 +22,6 @@ namespace Repository
         /// <param name="transaction"></param>
         public Transaction(ITransaction transaction)
         {
-            this.RowId = transaction.RowId;
             this.ExternalId = transaction.ExternalId;
             this.FromAccount = transaction.FromAccount;
             this.ToAccount = transaction.ToAccount;
@@ -35,6 +34,7 @@ namespace Repository
                 this.OwnerId = transaction.Owner.Id;
         }
 
+        //todo we can have validations for each of these
         public int RowId { get; set; }
         public Guid ExternalId { get; set; }
         public string FromAccount { get; set; }
