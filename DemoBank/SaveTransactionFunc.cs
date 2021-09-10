@@ -29,24 +29,24 @@ namespace DemoBank
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "text/plain", bodyType: typeof(string), Description = "The OK response")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", "post" ,Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            if (req.Method == "post")
+            if (req.Method.ToLower() == "post")
             {
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var result = await transactionService.SaveTransaction(requestBody);
                 return new StatusCodeResult(result.ReturnCode);
             }
-            if (req.Method == "put")
+            if (req.Method.ToLower() == "put")
             {
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var result = await transactionService.UpdateTransaction(requestBody);
                 return new StatusCodeResult(result.ReturnCode);
             }
-            if (req.Method == "get")
+            if (req.Method.ToLower() == "get")
             {
                 string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
                 var result = await transactionService.getAllTransactions();

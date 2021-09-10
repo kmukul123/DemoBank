@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankRepositoryTests", "BankRepositoryTests\BankRepositoryTests.csproj", "{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionServiceTest", "TransactionServiceTest\TransactionServiceTest.csproj", "{D73DE27F-40B0-4562-89F0-291F0AA83014}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D73DE27F-40B0-4562-89F0-291F0AA83014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73DE27F-40B0-4562-89F0-291F0AA83014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73DE27F-40B0-4562-89F0-291F0AA83014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73DE27F-40B0-4562-89F0-291F0AA83014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{2D6A5B9A-01C9-4AA5-9E5E-93F758A448FE} = {B930D09B-5A06-4225-8501-60BD566FE20A}
 		{FF2F9FD0-149C-4F03-802B-72D988F7BFF0} = {B930D09B-5A06-4225-8501-60BD566FE20A}
 		{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83} = {8CC3C8FA-FA14-49A2-8F1B-8DF9C95D7389}
+		{D73DE27F-40B0-4562-89F0-291F0AA83014} = {B930D09B-5A06-4225-8501-60BD566FE20A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C5BB32DD-83A1-4E68-ABCD-9CD8D9F1464F}
