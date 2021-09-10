@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Transactions]
 (
 	[RowId] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [externalId] UNIQUEIDENTIFIER NOT NULL, 
+    [externalId] UNIQUEIDENTIFIER NOT NULL UNIQUE, 
     [fromAccount] NVARCHAR(50) NOT NULL, 
     [toAccount] NVARCHAR(50) NOT NULL, 
     [description] NCHAR(10) NOT NULL, 

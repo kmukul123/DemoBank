@@ -1,6 +1,7 @@
 ﻿using DomainModel;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,10 +26,12 @@ namespace Repository
         /// <returns></returns>
         public async Task<IEnumerable<ITransaction>> GetAllTransactionsAsync()
         {
-            return await  BankDBContext.Transactions.ToListAsync();
+            var result = await BankDBContext.Transactions.AsNoTracking().ToListAsync();
+            
+            return result;
         }
 
-        public async Task<ITransaction> GetTransactionAsync(Guid guid)
+        public async Task<Transaction> GetTransactionAsync(Guid guid)
         {
             return await BankDBContext.Transactions.SingleOrDefaultAsync(x => x.ExternalId == guid);
         }
@@ -54,25 +57,20 @@ namespace Repository
             }
         }
 
-        public async Task<int> SaveTransactionAndCustomerAsync(ITransaction transaction)
+        public async Task<int> AddTransactionAndCustomerAsync(ITransaction transaction)
         {
             BankDBContext.Transactions.Add(new Transaction(transaction));
-            using var dbtransaction = BankDBContext.Database.BeginTransaction();
-            try
-            {
-                var customerIspresent = await BankDBContext.Customers.AnyAsync(x => x.Id == transaction.OwnerId);
-                if (!customerIspresent)
-                    BankDBContext.Customers.Add(new Customer(transaction.Owner));
 
-                var ret = await BankDBContext.SaveChangesAsync();
-                dbtransaction.Commit();
-                return ret;
-            }
-            catch (Exception)
-            {
-                dbtransaction.Rollback();
-                throw;
-            }
+
+
+            var customerIspresent = await BankDBContext.Customers.AnyAsync(x => x.Id == transaction.OwnerId);
+            //beahviour could be modifed if customer is not already present
+            if (!customerIspresent)
+                BankDBContext.Customers.Add(new Customer(transaction.Owner));
+
+            return await TryCommitChanges();
+
+
         }
         /// <summary>
         /// TODO : can add database transactions for it
@@ -84,5 +82,47 @@ namespace Repository
             BankDBContext.Customers.Add(new Customer(c));
             return await BankDBContext.SaveChangesAsync();
         }
+
+        public async Task<int> UpdateTransactionAndCustomerAsync(ITransaction transaction)
+        {
+            var existingTransaction = await this.GetTransactionAsync(transaction.ExternalId);
+            if (existingTransaction == null)
+                // TOOD review this from security perspective
+                return -1;
+            UpdateexistingTransactionValues(existingTransaction, transaction);
+
+            using var dbtransaction = BankDBContext.Database.BeginTransaction();
+            return await TryCommitChanges();
+        }
+
+        private void UpdateexistingTransactionValues(Transaction existingTransaction, ITransaction transaction)
+        {
+            existingTransaction.Amount = transaction.Amount;
+            existingTransaction.Date = transaction.Date;
+            existingTransaction.Description = transaction.Description;
+            existingTransaction.ExternalId = transaction.ExternalId;
+            existingTransaction.FromAccount = transaction.FromAccount;
+            existingTransaction.Owner = transaction.Owner;
+            existingTransaction.OwnerId = transaction.OwnerId;
+            existingTransaction.Owner = transaction.Owner;
+        }
+
+        private async Task<int> TryCommitChanges()
+        {
+            using var dbtransaction = BankDBContext.Database.BeginTransaction();
+            try
+            {
+
+                var ret = await BankDBContext.SaveChangesAsync();
+                dbtransaction.Commit();
+                return ret;
+            }
+            catch (Exception)
+            {
+                dbtransaction.Rollback();
+                throw;
+            }
+        }
+
     }
 }

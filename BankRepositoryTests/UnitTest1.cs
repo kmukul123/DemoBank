@@ -44,7 +44,7 @@ namespace BankRepositoryTests
             var customer = makeCustomer();
 
             var transaction = maketestTransaction(customer);
-            await _repository.SaveTransactionAndCustomerAsync(transaction);
+            await _repository.AddTransactionAndCustomerAsync(transaction);
             var count = await _dbContext.Transactions.CountAsync();
             Assert.Equal(count, 1);
         }
@@ -56,7 +56,7 @@ namespace BankRepositoryTests
             var customer = makeCustomer();
             await _repository.SaveCustomerAsync(customer);
             var transaction = maketestTransaction(customer);
-            await _repository.SaveTransactionAndCustomerAsync(transaction);
+            await _repository.AddTransactionAndCustomerAsync(transaction);
             var count = await _dbContext.Transactions.CountAsync();
             Assert.Equal(count, 1);
         }

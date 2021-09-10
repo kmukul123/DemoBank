@@ -23,7 +23,7 @@ namespace DemoBank
             this.transactionService = transactionService;
         }
         
-        [FunctionName("SaveTransaction")]
+        [FunctionName("transactions")]
         [OpenApiOperation(operationId: "Run", tags: new[] { "name" })]
         [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
         [OpenApiParameter(name: "name", In = ParameterLocation.Query, Required = true, Type = typeof(string), Description = "The **Name** parameter")]
@@ -34,12 +34,26 @@ namespace DemoBank
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            string name = req.Query["name"];
+            if (req.Method == "post")
+            {
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                var result = await transactionService.SaveTransaction(requestBody);
+                return new StatusCodeResult(result.ReturnCode);
+            }
+            if (req.Method == "put")
+            {
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                var result = await transactionService.UpdateTransaction(requestBody);
+                return new StatusCodeResult(result.ReturnCode);
+            }
+            if (req.Method == "get")
+            {
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                var result = await transactionService.getAllTransactions();
+                return new OkObjectResult(result.Body);
+            }
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var result = await transactionService.SaveTransaction(requestBody);
-
-            return new StatusCodeResult(result.ReturnCode);
+            return new BadRequestResult();
         }
     }
 }

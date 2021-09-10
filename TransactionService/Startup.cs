@@ -16,7 +16,7 @@ namespace Service
             services.AddSingleton<IValidator<ITransaction>, TransactionValidator>();
             services.AddLogging();
             
-            services.AddScoped<ITransactionService, TransactionService>();
+            services.AddTransient<ITransactionService, TransactionService>();
             services.AddLogging();
         }
     }

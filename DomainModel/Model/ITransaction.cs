@@ -6,7 +6,7 @@ namespace DomainModel
 {
     public interface ITransaction
     {
-        public Guid ExternalId { get; set; }
+        public Guid ExternalId { get; }
         public string FromAccount { get; set; }
         public string ToAccount { get; set; }
         public string Description { get; set; }

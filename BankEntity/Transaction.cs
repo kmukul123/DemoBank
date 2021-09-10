@@ -29,7 +29,7 @@ namespace Repository
             this.Amount = transaction.Amount;
             this.Date = transaction.Date;
             this.OwnerId = transaction.OwnerId;
-
+            
             if (transaction.Owner != null)
                 this.OwnerId = transaction.Owner.Id;
         }
