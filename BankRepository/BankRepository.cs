@@ -12,7 +12,6 @@ namespace Repository
     /// </summary>
     public class BankRepository : ICustomerRepository, ITransactionRepository
     {
-
         public BankRepository(BankDBContext bankDBContext)
         {
             BankDBContext = bankDBContext;

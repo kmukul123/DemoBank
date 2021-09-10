@@ -34,7 +34,7 @@ namespace Service
                 transaction = JsonSerializer.Deserialize<Transaction>(input);
             } catch (Exception ex) {
                 logger.LogError($"Error failed to deserialize {input} exception {ex.ToString()}");
-                return new SaveResponse() { ErrorCode = StatusCodes.Status400BadRequest };
+                return new SaveResponse() { ReturnCode = StatusCodes.Status400BadRequest };
             }
             try
             {
@@ -45,7 +45,7 @@ namespace Service
             catch (Exception ex)
             {
                 logger.LogError($"Error transaction {transaction?.ExternalId} exception {ex.ToString()}");
-                return new SaveResponse() { ErrorCode = StatusCodes.Status500InternalServerError } ;
+                return new SaveResponse() { ReturnCode = StatusCodes.Status500InternalServerError } ;
             }
             return new SaveResponse() { Saved = true };
         }

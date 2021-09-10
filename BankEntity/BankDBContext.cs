@@ -52,7 +52,7 @@ namespace Repository
                 entity.HasKey(e => e.RowId)
                     .HasName("PK__tmp_ms_x__FFEE743164DFDD52");
 
-                entity.HasIndex(e => e.ExternalId, "IX_Transactions_ExternalId");
+                //entity.HasIndex(e => e.ExternalId, "IX_Transactions_ExternalId");
 
                 entity.Property(e => e.Amount)
                     .HasColumnType("numeric(18, 4)")

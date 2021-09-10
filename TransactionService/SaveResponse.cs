@@ -8,7 +8,7 @@ namespace Service
     public class SaveResponse
     {
         public bool Saved { get; set; } = false;
-        public int ErrorCode { get; set; }
+        public int ReturnCode { get; set; }
         public string ExternalError { get; set; }
 
     }

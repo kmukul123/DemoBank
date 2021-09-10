@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankRepository", "BankRepos
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessServices", "BusinessServices", "{B930D09B-5A06-4225-8501-60BD566FE20A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService", "TransactionService\TransactionService.csproj", "{2D6A5B9A-01C9-4AA5-9E5E-93F758A448FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionService", "TransactionService\TransactionService.csproj", "{2D6A5B9A-01C9-4AA5-9E5E-93F758A448FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{FF2F9FD0-149C-4F03-802B-72D988F7BFF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModel", "DomainModel\DomainModel.csproj", "{FF2F9FD0-149C-4F03-802B-72D988F7BFF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankRepositoryTests", "BankRepositoryTests\BankRepositoryTests.csproj", "{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankRepositoryTests", "BankRepositoryTests\BankRepositoryTests.csproj", "{4D8B0FDC-A9DC-4D5B-817F-EDB879D26A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
